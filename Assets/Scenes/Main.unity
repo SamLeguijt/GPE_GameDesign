@@ -1941,9 +1941,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1965527305}
-  healthPanelUI: {fileID: 1637619302}
   leftPanelSide: {fileID: 1447136862}
+  healthPanelUI: {fileID: 1637619302}
   heartSprite: {fileID: 7450799}
+  disabledHeartColor: {r: 0.33333334, g: 0.33161265, b: 0.33161265, a: 1}
 --- !u!1 &1965527300
 GameObject:
   m_ObjectHideFlags: 0

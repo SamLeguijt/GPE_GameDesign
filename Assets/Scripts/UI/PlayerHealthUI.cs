@@ -5,16 +5,20 @@ using UnityEngine.UI;
 
 public class PlayerHealthUI : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private PlayerHealthController playerHealth;
-    [SerializeField] private Image healthPanelUI = null;
     [SerializeField] private Transform leftPanelSide = null;
+
+    [Header("UI References")]
+    [SerializeField] private Image healthPanelUI = null;
     [SerializeField] private Image heartSprite = null;
 
-    private List<Image> heartImages = new List<Image>();
-
+    [Header("Settings")]
     [SerializeField] private Color disabledHeartColor = Color.black;
 
+    private List<Image> heartImages = new List<Image>();
     private int lostLives = 0;
+
     private void OnEnable()
     {
         playerHealth.PlayerLoseLifeEvent += OnPlayerLoseLife;
