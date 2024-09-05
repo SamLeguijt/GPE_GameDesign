@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [field: Header("Settings")]
     [field: SerializeField] public int PlayerLayerIndex { get; private set; } = 7;
+    [field: SerializeField] public int ProjectileLayerIndex { get; private set; } = 6;
     [field: SerializeField] public float LoadGameOverSceneDelay { get; private set; } = 3f;
     [field: SerializeField] public float DecreasedSimulationSpeed { get; private set; } = .75f;
     [field: SerializeField] public float DecreasedSpeedDuration { get; private set; } = 2.5f;
