@@ -9,6 +9,8 @@ public class PlayerHealthController : MonoBehaviour
     public event PlayerHealthHandler PlayerDeathEvent;
     public event PlayerHealthHandler PlayerLoseLifeEvent;
 
+    public float MaxLives => maxLives;
+    public float CurrentLives => currentLives;
     public bool IsAlive => currentLives > 0;
 
     [Header("Settings")]
