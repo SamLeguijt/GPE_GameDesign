@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public delegate void ObstcaleCollisionHandler(Obstacle obstacle, Projectile projectile);
+    public static event ObstcaleCollisionHandler ObstacleProjectileCollisionEvent;
+
     private Collider2D obstacleCollider = null;
 
     [field: Header("Settings")]
@@ -22,9 +25,12 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.layer == projectileLayer)
         {
-            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
-            projectile.OnObstacleCollision(this);
-            Destroy(gameObject);
+            if (collision.TryGetComponent(out Projectile projectile))
+            {
+                ObstacleProjectileCollisionEvent?.Invoke(this, projectile);
+                projectile.OnObstacleCollision(this);
+                Destroy(gameObject);
+            }
         }
     }
 }
