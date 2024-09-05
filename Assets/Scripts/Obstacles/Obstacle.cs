@@ -15,6 +15,7 @@ public class Obstacle : MonoBehaviour
     [field: Header("Settings")]
     [field: SerializeField] public Color ObstacleColor { get; private set; }
 
+    private bool canBeDestroyed = false;
     private bool isActive = false;
     private float fallSpeed = 1f;
     private int projectileLayer;
@@ -43,6 +44,9 @@ public class Obstacle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!canBeDestroyed)
+            return;
+
         if (collision.gameObject.layer == projectileLayer)
         {
             if (collision.TryGetComponent(out Projectile projectile))
@@ -59,7 +63,17 @@ public class Obstacle : MonoBehaviour
         if (!isActive)
             return;
 
+        if (!canBeDestroyed)
+        {
+            if (transform.position.y < (screenBounds.y - spriteSizeHalfedY))
+            {
+                canBeDestroyed = true;
+            }
+        }
+
         transform.position = new Vector2(transform.position.x, transform.position.y - fallSpeed * Time.deltaTime);
+
+
 
         if (transform.position.y < (-screenBounds.y - spriteSizeHalfedY))
         {

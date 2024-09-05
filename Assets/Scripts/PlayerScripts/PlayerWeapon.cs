@@ -31,5 +31,19 @@ public class PlayerWeapon : MonoBehaviour
         bullet.Instantiate(this);
     }
 
+    private void Update()
+    {
+
+        if (transform.position.y > GameManager.Instance.GetScreenBounds().y)
+        {
+            Debug.Log("Above screen");
+        }
+        
+        if (transform.position.y < -GameManager.Instance.GetScreenBounds().y)
+        {
+
+            Debug.Log("Below screen");
+        }
+    }
 
 }

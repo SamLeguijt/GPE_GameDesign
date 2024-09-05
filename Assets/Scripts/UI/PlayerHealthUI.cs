@@ -12,7 +12,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private List<Image> heartImages = new List<Image>();
 
-    private Color disabledHeartColor = Color.black;
+    [SerializeField] private Color disabledHeartColor = Color.black;
 
     private int lostLives = 0;
     private void OnEnable()
