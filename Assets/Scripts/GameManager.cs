@@ -16,10 +16,10 @@ public class GameManager : MonoBehaviour
     [field: Header("References")]
     [field: SerializeField] public PlayerHealthController PlayerHealth { get; private set; }
     [field: SerializeField] public LaneManager LaneManager { get; private set; }
+    [field: SerializeField] public Camera MainCamera { get; private set; }
 
 
     [field: Header("Settings")]
-    [field: SerializeField] public int PlayerLayerIndex { get; private set; } = 7;
     [field: SerializeField] public int ProjectileLayerIndex { get; private set; } = 6;
     [field: SerializeField] public float LoadGameOverSceneDelay { get; private set; } = 3f;
     [field: SerializeField] public float DecreasedSimulationSpeed { get; private set; } = .75f;
@@ -51,7 +51,11 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
     }
-
+    private void Start()
+    {
+        if (MainCamera == null)
+            MainCamera = Camera.main;
+    }
     private void OnPlayerDeathEvent()
     {
         Invoke("LoadGameOverScene", LoadGameOverSceneDelay);
@@ -78,6 +82,13 @@ public class GameManager : MonoBehaviour
         decreasedSpeedRoutine = null;
     }
 
+    public Vector2 GetScreenBounds()
+    {
+        Vector2 screenBottomLeft = MainCamera.ViewportToWorldPoint(new Vector2(0, 0));
+        Vector2 screenTopRight = MainCamera.ViewportToWorldPoint(new Vector2(1, 1));
+
+        return new Vector2(screenTopRight.x, screenTopRight.y);
+    }
     #region SceneManagement
     private void LoadGameOverScene()
     {

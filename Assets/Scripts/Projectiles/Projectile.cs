@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
 
     public void Instantiate(PlayerWeapon owner)
     {
-        screenBounds = owner.ScreenBounds;
+        screenBounds = GameManager.Instance.GetScreenBounds();
 
         this.speed = owner.ProjectileSpeed;
         isEnabled = true;

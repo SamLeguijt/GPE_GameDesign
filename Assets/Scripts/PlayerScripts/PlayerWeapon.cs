@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     public float ProjectileSpeed => projectileSpeed;
-    public Vector2 ScreenBounds { get; private set; }
 
     [Header("References")]
     [SerializeField] private Transform firePoint = null;
@@ -26,23 +25,11 @@ public class PlayerWeapon : MonoBehaviour
         inputController.ShootInput -= OnShootInputReceivedEvent;
     }
 
-    private void Start()
-    {
-        cam = Camera.main;
-        ScreenBounds = GetScreenBounds();
-    }
-
     private void OnShootInputReceivedEvent()
     {
         Projectile bullet = Instantiate(projectilePRefab, firePoint.position, Quaternion.identity);
         bullet.Instantiate(this);
     }
 
-    private Vector2 GetScreenBounds()
-    {
-        Vector2 screenBottomLeft = cam.ViewportToWorldPoint(new Vector2(0, 0));
-        Vector2 screenTopRight = cam.ViewportToWorldPoint(new Vector2(1, 1));
 
-        return new Vector2(screenTopRight.x, screenTopRight.y);
-    }
 }

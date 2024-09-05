@@ -5,7 +5,10 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public delegate void ObstcaleCollisionHandler(Obstacle obstacle, Projectile projectile);
+    public delegate void ObstacleEscapedHandler(Obstacle obstacle);
+
     public static event ObstcaleCollisionHandler ObstacleProjectileCollisionEvent;
+    public static event ObstacleEscapedHandler ObstacleEscapedEvent;
 
     private Collider2D obstacleCollider = null;
 
@@ -13,11 +16,14 @@ public class Obstacle : MonoBehaviour
     [field: SerializeField] public Color ObstacleColor { get; private set; }
 
     private int projectileLayer;
+    private Vector2 screenBounds;
+
     private void Start()
     {
         obstacleCollider = GetComponent<Collider2D>();
         obstacleCollider.isTrigger = true;
 
+        screenBounds = GameManager.Instance.GetScreenBounds();
         projectileLayer = GameManager.Instance.ProjectileLayerIndex;
     }
 
@@ -31,6 +37,15 @@ public class Obstacle : MonoBehaviour
                 projectile.OnObstacleCollision(this);
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < -screenBounds.y)
+        {
+            ObstacleEscapedEvent?.Invoke(this);
+            Destroy(gameObject);
         }
     }
 }
