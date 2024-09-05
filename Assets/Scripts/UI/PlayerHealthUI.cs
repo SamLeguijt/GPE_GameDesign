@@ -49,7 +49,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void OnPlayerLoseLife()
     {
-        if (lostLives > heartImages.Count)
+        if (lostLives >= heartImages.Count)
             return;
 
         heartImages[lostLives].color = disabledHeartColor;

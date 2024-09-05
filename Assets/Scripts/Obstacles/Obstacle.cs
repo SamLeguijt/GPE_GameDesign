@@ -36,7 +36,7 @@ public class Obstacle : MonoBehaviour
         isActive = true;
     }
 
-    public void Instantiate(float fallSpeed)
+    public void Initialize(float fallSpeed)
     {
         this.fallSpeed = fallSpeed;
     }

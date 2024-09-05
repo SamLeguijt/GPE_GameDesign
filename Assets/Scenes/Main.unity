@@ -328,6 +328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6721695018713906193, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
     m_RemovedGameObjects: []
@@ -475,6 +479,10 @@ PrefabInstance:
     - target: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1654,6 +1662,7 @@ GameObject:
   - component: {fileID: 1603864587}
   - component: {fileID: 1603864586}
   - component: {fileID: 1603864585}
+  - component: {fileID: 1603864588}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1674,9 +1683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lanePositions:
-  - {x: -2, y: 0}
-  - {x: 0, y: 0}
-  - {x: 2, y: 0}
+  - {x: -2, y: 8}
+  - {x: 0, y: 8}
+  - {x: 2, y: 8}
 --- !u!114 &1603864586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,6 +1721,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1603864588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603864584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaea82aa41ec464c8f5de8dafa048cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefab: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
+  spawnDelay: 1.5
+  objectsPerSpawnTick: 3
+  minObstacleSpeed: 1
+  maxObstacleSpeed: 5
 --- !u!1 &1635745195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +2016,10 @@ PrefabInstance:
     - target: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
