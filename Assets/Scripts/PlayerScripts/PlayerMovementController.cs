@@ -133,7 +133,7 @@ public class PlayerMovementController : MonoBehaviour
             // Keep the players' Y pos to 
             Vector2 targetPos = new Vector3(targetLane.Position.x, player.position.y);
 
-            player.position = Vector2.MoveTowards(player.position, targetPos, laneSwapSpeed * Time.deltaTime);
+            player.position = Vector2.MoveTowards(player.position, targetPos, laneSwapSpeed * GameManager.Instance.SimulationSpeed * Time.deltaTime);
             elapsedTime += Time.deltaTime;
 
             if (player.position.x == targetLane.Position.x)

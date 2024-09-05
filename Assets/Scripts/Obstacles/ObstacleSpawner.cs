@@ -55,7 +55,7 @@ public class ObstacleSpawner : MonoBehaviour
         float elapsedTime = 0f;
         float maxDuration = 10f;
 
-        while (elapsedTime < maxDuration)
+        while (elapsedTime < maxDuration && GameManager.Instance.IsGameActive)
         {
             yield return delay;
 

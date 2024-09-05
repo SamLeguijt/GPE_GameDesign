@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public float DecreasedSpeedDuration { get; private set; } = 2.5f;
     [SerializeField] public float SimulationSpeed { get; private set; } = 1f;
 
+    public bool IsGameActive { get; private set; } = true; 
+
     private Coroutine decreasedSpeedRoutine = null;
 
     private void OnEnable()
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
 
         GameOverUI.SetActive(true);
         SimulationSpeed = 0f;
+        IsGameActive = false;
     }
 
     private void OnPlayerLoseLifeEvent()

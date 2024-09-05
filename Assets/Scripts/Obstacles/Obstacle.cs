@@ -66,14 +66,10 @@ public class Obstacle : MonoBehaviour
         if (!canBeDestroyed)
         {
             if (transform.position.y < (screenBounds.y - spriteSizeHalfedY))
-            {
                 canBeDestroyed = true;
-            }
         }
 
-        transform.position = new Vector2(transform.position.x, transform.position.y - fallSpeed * Time.deltaTime);
-
-
+        transform.position = new Vector2(transform.position.x, transform.position.y - fallSpeed * GameManager.Instance.SimulationSpeed * Time.deltaTime);
 
         if (transform.position.y < (-screenBounds.y - spriteSizeHalfedY))
         {
