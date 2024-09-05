@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     #region SceneManagement
     private void LoadGameOverScene()
     {
-        SceneManager.LoadScene(GAME_OVER_SCENE);
+        //SceneManager.LoadScene(GAME_OVER_SCENE);
     }
 
     public void ReplayGame()

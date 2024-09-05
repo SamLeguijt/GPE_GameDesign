@@ -12,6 +12,20 @@ public class PlayerHealthUI : MonoBehaviour
 
     private List<Image> heartImages = new List<Image>();
 
+    private Color disabledHeartColor = Color.black;
+
+    private int lostLives = 0;
+    private void OnEnable()
+    {
+        playerHealth.PlayerLoseLifeEvent += OnPlayerLoseLife;
+    }
+
+    private void OnDisable()
+    {
+        playerHealth.PlayerLoseLifeEvent -= OnPlayerLoseLife;
+
+    }
+
     private void Start()
     {
         float space = 32f;
@@ -25,9 +39,20 @@ public class PlayerHealthUI : MonoBehaviour
             heartImages.Add(heart);
         }
 
-        for (int i = 0; i< heartImages.Count; i++)
+        for (int i = 0; i < heartImages.Count; i++)
         {
             heartImages[i].gameObject.SetActive(true);
         }
+
+        heartImages.Reverse();
+    }
+
+    private void OnPlayerLoseLife()
+    {
+        if (lostLives > heartImages.Count)
+            return;
+
+        heartImages[lostLives].color = disabledHeartColor;
+        lostLives++;
     }
 }

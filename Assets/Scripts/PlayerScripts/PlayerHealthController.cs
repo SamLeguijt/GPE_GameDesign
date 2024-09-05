@@ -26,6 +26,17 @@ public class PlayerHealthController : MonoBehaviour
         currentLives = maxLives;
     }
 
+    private void OnEnable()
+    {
+        Obstacle.ObstacleEscapedEvent += OnObstacleEscapedEvent;
+    }
+
+    private void OnDisable()
+    {
+        Obstacle.ObstacleEscapedEvent -= OnObstacleEscapedEvent;
+
+    }
+
     private void Update()
     {
         // DEBUG.
@@ -34,6 +45,11 @@ public class PlayerHealthController : MonoBehaviour
             LoseLives(1);
             takeDamage = false;
         }
+    }
+
+    private void OnObstacleEscapedEvent(Obstacle obstacle)
+    {
+        LoseLives(1);
     }
 
     public void LoseLives(int amount)
