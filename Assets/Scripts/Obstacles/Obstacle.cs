@@ -15,16 +15,30 @@ public class Obstacle : MonoBehaviour
     [field: Header("Settings")]
     [field: SerializeField] public Color ObstacleColor { get; private set; }
 
+    private bool isActive = false;
+    private float fallSpeed = 1f;
     private int projectileLayer;
     private Vector2 screenBounds;
 
+    private SpriteRenderer spriteRenderer;
+    private float spriteSizeHalfedY;
     private void Start()
     {
         obstacleCollider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteSizeHalfedY = spriteRenderer.sprite.bounds.size.y /2;
+
         obstacleCollider.isTrigger = true;
 
         screenBounds = GameManager.Instance.GetScreenBounds();
         projectileLayer = GameManager.Instance.ProjectileLayerIndex;
+
+        isActive = true;
+    }
+
+    public void Instantiate(float fallSpeed)
+    {
+        this.fallSpeed = fallSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,9 +56,15 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -screenBounds.y)
+        if (!isActive)
+            return;
+
+        transform.position = new Vector2(transform.position.x, transform.position.y - fallSpeed * Time.deltaTime);
+
+        if (transform.position.y < (-screenBounds.y - spriteSizeHalfedY))
         {
             ObstacleEscapedEvent?.Invoke(this);
+            isActive = false;
             Destroy(gameObject);
         }
     }
