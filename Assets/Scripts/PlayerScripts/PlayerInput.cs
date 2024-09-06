@@ -8,10 +8,14 @@ public class PlayerInput : MonoBehaviour
     public event PlayerInputHandler MoveLeftInput;
     public event PlayerInputHandler MoveRightInput;
     public event PlayerInputHandler ShootInput;
+    public event PlayerInputHandler SwitchColorRightInput;
+    public event PlayerInputHandler SwitchColorLeftInput;
 
     [SerializeField] private List<KeyCode> leftMoveKeys = new List<KeyCode>();
     [SerializeField] private List<KeyCode> rightMoveKeys = new List<KeyCode>();
     [SerializeField] private List<KeyCode> shootKeys = new List<KeyCode>();
+    [SerializeField] private List<KeyCode> leftColorSwitchKeys = new List<KeyCode>();
+    [SerializeField] private List<KeyCode> rightColorSwitchKeys = new List<KeyCode>();
 
     // Update is called once per frame
     void Update()
@@ -37,6 +41,22 @@ public class PlayerInput : MonoBehaviour
             if (Input.GetKeyDown(shootKeys[i]))
             {
                 ShootInput?.Invoke();
+            }
+        }
+
+        for (int i = 0; i < leftColorSwitchKeys.Count; i++)
+        {
+            if (Input.GetKeyDown(leftColorSwitchKeys[i]))
+            {
+                SwitchColorLeftInput?.Invoke();
+            }
+        }
+        
+        for (int i = 0; i < rightColorSwitchKeys.Count; i++)
+        {
+            if (Input.GetKeyDown(rightColorSwitchKeys[i]))
+            {
+                SwitchColorRightInput?.Invoke();
             }
         }
     }

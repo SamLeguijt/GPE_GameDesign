@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    
     public bool HasCollided {  get; private set; }
+
+    [Header("References")]
+    [SerializeField] private SpriteRenderer spriteRenderer = null;
+
     private float speed = 0f;
-
     private bool isEnabled = false;
-
     private Vector2 screenBounds;
-
-
 
     public void Instantiate(PlayerWeapon owner)
     {
         screenBounds = GameManager.Instance.GetScreenBounds();
 
         this.speed = owner.ProjectileSpeed;
+        spriteRenderer.color = owner.CurrentColor.Color;
+
         isEnabled = true;
     }
 
