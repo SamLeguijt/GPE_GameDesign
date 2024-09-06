@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         if (PlayerHealth != null)
         {
             PlayerHealth.PlayerLoseLifeEvent += OnPlayerLoseLifeEvent;
-            PlayerHealth.PlayerDeathEvent += OnPlayerDeathEvent;
+            PlayerHealth.PlayerGameOverEvent += OnPlayerDeathEvent;
         }
     }
 
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         if (PlayerHealth != null)
         {
             PlayerHealth.PlayerLoseLifeEvent -= OnPlayerLoseLifeEvent;
-            PlayerHealth.PlayerDeathEvent -= OnPlayerDeathEvent;
+            PlayerHealth.PlayerGameOverEvent -= OnPlayerDeathEvent;
         }
     }
 

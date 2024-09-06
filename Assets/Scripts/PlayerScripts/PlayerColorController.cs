@@ -20,6 +20,8 @@ public class PlayerColorController : MonoBehaviour
     {
         allColors = GameManager.Instance.ColorContainer.GetAllColorData();
         CurrentColorIndex = 0;
+
+        SwitchActiveColor(CurrentColorIndex);
     }
 
     private void OnEnable()
@@ -46,6 +48,9 @@ public class PlayerColorController : MonoBehaviour
 
     private void SwitchActiveColor(int direction)
     {
+        if (!GameManager.Instance.IsGameActive)
+            return;
+
         direction = Mathf.Clamp(direction, -1, 1);
 
         int newColorIndex = CurrentColorIndex + direction;
@@ -67,13 +72,11 @@ public class PlayerColorController : MonoBehaviour
             }
         }
 
-        if (newColorIndex != CurrentColorIndex)
-        {
-            CurrentColor = allColors[newColorIndex];
-            PlayerSprite.color = CurrentColor.Color;
-            CurrentColorIndex = newColorIndex;
 
-            OnColorChanged?.Invoke(CurrentColor);
-        }
+        CurrentColor = allColors[newColorIndex];
+        PlayerSprite.color = CurrentColor.Color;
+        CurrentColorIndex = newColorIndex;
+
+        OnColorChanged?.Invoke(CurrentColor);
     }
 }

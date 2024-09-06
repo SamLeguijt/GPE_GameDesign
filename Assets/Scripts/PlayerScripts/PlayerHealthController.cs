@@ -6,7 +6,7 @@ public class PlayerHealthController : MonoBehaviour
 {
     public delegate void PlayerHealthHandler();
 
-    public event PlayerHealthHandler PlayerDeathEvent;
+    public event PlayerHealthHandler PlayerGameOverEvent;
     public event PlayerHealthHandler PlayerLoseLifeEvent;
 
     public float MaxLives => maxLives;
@@ -59,12 +59,11 @@ public class PlayerHealthController : MonoBehaviour
         PlayerLoseLifeEvent?.Invoke();
 
         if (currentLives <= 0)
-            KillPlayer();
+            GameOver();
     }
 
-    private void KillPlayer()
+    private void GameOver()
     {
-        PlayerDeathEvent?.Invoke();
-        Destroy(gameObject, onDeathDestroyDelay);
+        PlayerGameOverEvent?.Invoke();
     }
 }

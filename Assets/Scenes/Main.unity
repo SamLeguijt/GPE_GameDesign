@@ -2265,6 +2265,7 @@ MonoBehaviour:
   player: {fileID: 1965527302}
   inputController: {fileID: 1965527304}
   playerHealthController: {fileID: 1965527305}
+  playerColorController: {fileID: 1965527308}
   laneManager: {fileID: 1603864585}
   moveParticles: {fileID: 1933874577}
   laneSwapSpeed: 23
@@ -2310,6 +2311,18 @@ PrefabInstance:
     - target: {fileID: 5373844757389793982, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
       propertyPath: m_SortingOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827151123214410808, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827151123214410808, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827151123214410808, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
       propertyPath: m_LocalPosition.x

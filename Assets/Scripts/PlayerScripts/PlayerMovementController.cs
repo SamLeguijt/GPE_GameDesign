@@ -22,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private Transform player = null;
     [SerializeField] private PlayerInput inputController = null;
     [SerializeField] private PlayerHealthController playerHealthController = null;
+    [SerializeField] private PlayerColorController playerColorController = null;
     [SerializeField] private LaneManager laneManager = null;
     [SerializeField] private ParticleSystem moveParticles = null;
 
@@ -42,7 +43,9 @@ public class PlayerMovementController : MonoBehaviour
         inputController.MoveLeftInput += OnLeftMoveInputReceivedEvent;
         inputController.MoveRightInput += OnRightMoveInputReceivedEvent;
 
-        playerHealthController.PlayerDeathEvent += OnPlayerDeathEvent;
+        playerHealthController.PlayerGameOverEvent += OnPlayerDeathEvent;
+
+        playerColorController.OnColorChanged += OnColorChangedEvent;
     }
 
     private void OnDisable()
@@ -50,10 +53,12 @@ public class PlayerMovementController : MonoBehaviour
         inputController.MoveLeftInput -= OnLeftMoveInputReceivedEvent;
         inputController.MoveRightInput-= OnRightMoveInputReceivedEvent;
 
-        playerHealthController.PlayerDeathEvent -= OnPlayerDeathEvent;
+        playerHealthController.PlayerGameOverEvent -= OnPlayerDeathEvent;
+    
+        playerColorController.OnColorChanged -= OnColorChangedEvent;
     }
 
- 
+
     private void Start()
     {
         player.position = new Vector3(CurrentLane.Position.x, player.position.y, player.position.z);
@@ -160,9 +165,24 @@ public class PlayerMovementController : MonoBehaviour
         else
             particleRotation = 180f;
 
-
         moveParticles.transform.rotation = Quaternion.Euler(transform.rotation.x, particleRotation, transform.rotation.z);
         moveParticles.Play();
+    }
+
+    private void OnColorChangedEvent(ColorData colorData)
+    {
+        var particlesMain = moveParticles.main;
+        particlesMain.startColor = playerColorController.CurrentColor.Color;
+
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[moveParticles.particleCount];
+        int numParticlesAlive = moveParticles.GetParticles(particles);
+
+        for (int i = 0; i < numParticlesAlive; i++)
+        {
+            particles[i].startColor = playerColorController.CurrentColor.Color;
+        }
+
+        moveParticles.SetParticles(particles, numParticlesAlive);
     }
 
 
