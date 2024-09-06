@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    
+    public bool HasCollided {  get; private set; }
     private float speed = 0f;
 
     private bool isEnabled = false;
 
     private Vector2 screenBounds;
+
+
 
     public void Instantiate(PlayerWeapon owner)
     {
@@ -34,6 +38,7 @@ public class Projectile : MonoBehaviour
 
     public void OnObstacleCollision(Obstacle obstacle)
     {
+        HasCollided = true;
         Destroy(gameObject);
     }
 }
