@@ -23,6 +23,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private PlayerInput inputController = null;
     [SerializeField] private PlayerHealthController playerHealthController = null;
     [SerializeField] private LaneManager laneManager = null;
+    [SerializeField] private ParticleSystem moveParticles = null;
 
     [Header("Movement settings")]
     [SerializeField] private float laneSwapSpeed = 3f;
@@ -83,7 +84,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         if (targetLane.LaneType != CurrentLane.LaneType)
-            MoveToLane(targetLane);
+            MoveToLane(targetLane, true);
     }
 
     private void OnRightMoveInputReceivedEvent()
@@ -106,10 +107,10 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         if (targetLane.LaneType != CurrentLane.LaneType)
-            MoveToLane(targetLane);
+            MoveToLane(targetLane, false);
     }
 
-    private void MoveToLane(Lane targetLane)
+    private void MoveToLane(Lane targetLane, bool movesLeft = false)
     {
         if (!AllowedToMove)
             return;
@@ -118,6 +119,7 @@ public class PlayerMovementController : MonoBehaviour
             StopCoroutine(swapLanesCoroutine);
 
         swapLanesCoroutine = StartCoroutine(MoveLaneCoroutine(targetLane));
+        PlayMoveParticles(movesLeft);
     }
 
     private IEnumerator MoveLaneCoroutine(Lane targetLane)
@@ -148,6 +150,21 @@ public class PlayerMovementController : MonoBehaviour
         StopLaneSwapEvent?.Invoke(targetLane);
         isSwappingLanes = false;
     }
+
+    private void PlayMoveParticles(bool toLeft)
+    {
+        float particleRotation = 0;
+
+        if (toLeft)
+            particleRotation = 0;
+        else
+            particleRotation = 180f;
+
+
+        moveParticles.transform.rotation = Quaternion.Euler(transform.rotation.x, particleRotation, transform.rotation.z);
+        moveParticles.Play();
+    }
+
 
     private void OnPlayerDeathEvent()
     {

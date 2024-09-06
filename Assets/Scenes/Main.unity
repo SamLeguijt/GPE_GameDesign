@@ -2057,7 +2057,7 @@ Transform:
   m_GameObject: {fileID: 1853361655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6115, z: 0}
+  m_LocalPosition: {x: 0, y: -0.747, z: 0}
   m_LocalScale: {x: 4.4, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2115,6 +2115,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1933874575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+  m_PrefabInstance: {fileID: 170383896078949165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1933874577 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6827151123214410808, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+  m_PrefabInstance: {fileID: 170383896078949165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1965527300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2212,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 714541668}
+  - {fileID: 1933874575}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1965527304
@@ -2251,6 +2262,7 @@ MonoBehaviour:
   inputController: {fileID: 1965527304}
   playerHealthController: {fileID: 1965527305}
   laneManager: {fileID: 1603864585}
+  moveParticles: {fileID: 1933874577}
   laneSwapSpeed: 23
 --- !u!114 &1965527307
 MonoBehaviour:
@@ -2268,6 +2280,63 @@ MonoBehaviour:
   projectilePRefab: {fileID: 7937338659242989628, guid: 2267dcdef5954a54c86fd61508e4cad4, type: 3}
   inputController: {fileID: 1965527304}
   projectileSpeed: 15
+--- !u!1001 &170383896078949165
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1965527302}
+    m_Modifications:
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080195924138912594, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_Name
+      value: PlayerMoveParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
