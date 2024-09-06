@@ -1767,6 +1767,7 @@ MonoBehaviour:
   <LaneManager>k__BackingField: {fileID: 1603864585}
   <MainCamera>k__BackingField: {fileID: 519420031}
   <GameOverUI>k__BackingField: {fileID: 396474869}
+  <ColorContainer>k__BackingField: {fileID: 11400000, guid: a50d83cddd18d774cb8576f01cdd05f0, type: 2}
   <ProjectileLayerIndex>k__BackingField: 6
   <LoadGameOverSceneDelay>k__BackingField: 3
   <DecreasedSimulationSpeed>k__BackingField: 0.75
@@ -1800,9 +1801,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
   spawnDelay: 2
-  objectsPerSpawnTick: 1
-  minObstacleSpeed: 0
-  maxObstacleSpeed: 0
+  objectsPerSpawnTick: 3
+  minObstacleSpeed: 1
+  maxObstacleSpeed: 2
 --- !u!1 &1635745195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2058,7 @@ Transform:
   m_GameObject: {fileID: 1853361655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.747, z: 0}
+  m_LocalPosition: {x: 0, y: 0.602, z: 0}
   m_LocalScale: {x: 4.4, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

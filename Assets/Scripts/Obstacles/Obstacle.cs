@@ -12,8 +12,7 @@ public class Obstacle : MonoBehaviour
 
     public static float BottomBorder = 2.2f;
 
-    [field: Header("Settings")]
-    [field: SerializeField] public Color ObstacleColor { get; private set; }
+    public ColorData ColorData;
 
     private Collider2D obstacleCollider = null;
     private bool canBeDestroyed = false;
@@ -22,12 +21,10 @@ public class Obstacle : MonoBehaviour
     private int projectileLayer;
     private Vector2 screenBounds;
 
-
-
     private SpriteRenderer spriteRenderer;
     private float spriteSizeHalfedY;
 
-    private void Start()
+    private void Awake()
     {
         obstacleCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -41,9 +38,12 @@ public class Obstacle : MonoBehaviour
         isActive = true;
     }
 
-    public void Initialize(float fallSpeed)
+    public void Initialize(ColorData colorData, float fallSpeed)
     {
+        this.ColorData = colorData;
         this.fallSpeed = fallSpeed;
+
+        spriteRenderer.color = this.ColorData.Color;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

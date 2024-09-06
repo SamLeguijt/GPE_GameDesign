@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public LaneManager LaneManager { get; private set; }
     [field: SerializeField] public Camera MainCamera { get; private set; }
     [field: SerializeField] public GameObject GameOverUI { get; private set; }
+    [field: SerializeField] public ColorContainer ColorContainer { get; private set; }  
 
 
     [field: Header("Settings")]

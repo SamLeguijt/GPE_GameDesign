@@ -14,10 +14,13 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float maxObstacleSpeed = 5f;
 
     private Vector2[] spawnPositons;
+    private List<ColorData> colors = new List<ColorData>();
     private Coroutine spawningRoutine = null;
 
     private void Start()
     {
+        colors = GameManager.Instance.ColorContainer.GetAllColorData();
+     
         SetupSpawnPositions();
         StartSpawningObstacles();
     }
@@ -64,7 +67,7 @@ public class ObstacleSpawner : MonoBehaviour
                 Vector2 spawnPos = GetRandomSpawnPosition();
 
                 Obstacle obstacle = Instantiate(obstaclePrefab, spawnPos, Quaternion.identity).GetComponent<Obstacle>() ;
-                obstacle.Initialize(GetRandomFloat(minObstacleSpeed, maxObstacleSpeed));
+                obstacle.Initialize(colors[GetRandomInt(0, colors.Count)], GetRandomFloat(minObstacleSpeed, maxObstacleSpeed));
             }
 
             elapsedTime += Time.deltaTime;
@@ -83,5 +86,10 @@ public class ObstacleSpawner : MonoBehaviour
         float actualMax = max + 1;
 
         return Random.Range(min, actualMax);
+    }
+
+    private int GetRandomInt(int min, int max)
+    {
+        return Random.Range(min, max);
     }
 }

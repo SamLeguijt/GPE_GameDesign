@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725c1b3ee2ed23d4c97272cf3e3ada59, type: 3}
+  m_Name: ColorContainer
+  m_EditorClassIdentifier: 
+  green: {r: 0, g: 0.8301887, b: 0.14627661, a: 1}
+  blue: {r: 0, g: 0.5501585, b: 1, a: 1}
+  red: {r: 0.9056604, g: 0, b: 0, a: 1}
+  purple: {r: 0.79235554, g: 0, b: 1, a: 1}
+  orange: {r: 1, g: 0.47833472, b: 0, a: 1}
