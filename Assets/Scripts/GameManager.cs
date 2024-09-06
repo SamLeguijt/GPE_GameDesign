@@ -61,11 +61,14 @@ public class GameManager : MonoBehaviour
             MainCamera = Camera.main;
 
         GameOverUI.SetActive(false);
+        AudioManager.Instance.PlayGameMusic();
     }
+    
     private void OnPlayerDeathEvent()
     {
         //Invoke("LoadGameOverScene", LoadGameOverSceneDelay);
 
+        AudioManager.Instance.PlayGameOverClip();
         GameOverUI.SetActive(true);
         SimulationSpeed = 0f;
         IsGameActive = false;
