@@ -14,11 +14,11 @@ public class PlayerColorController : MonoBehaviour
     [SerializeField] private SpriteRenderer PlayerSprite = null;
     [SerializeField] private PlayerInput inputController = null;
 
-    private List<ColorData> allColors = new List<ColorData>();
+    public List<ColorData> AllColors { get; private set; } = new List<ColorData>();
 
     private void Start()
     {
-        allColors = GameManager.Instance.ColorContainer.GetAllColorData();
+        AllColors = GameManager.Instance.ColorContainer.GetAllColorData();
         CurrentColorIndex = 0;
 
         SwitchActiveColor(CurrentColorIndex);
@@ -60,13 +60,13 @@ public class PlayerColorController : MonoBehaviour
         {
             if (newColorIndex < 0)
             {
-                newColorIndex = allColors.Count - 1;
+                newColorIndex = AllColors.Count - 1;
             }
         }
         // Right
         else if (direction > 0)
         {
-            if (newColorIndex >= allColors.Count)
+            if (newColorIndex >= AllColors.Count)
             {
                 newColorIndex = 0;
             }
@@ -75,10 +75,34 @@ public class PlayerColorController : MonoBehaviour
 
         AudioManager.Instance.PlayColorSwitchSFX();
 
-        CurrentColor = allColors[newColorIndex];
+        CurrentColor = AllColors[newColorIndex];
         PlayerSprite.color = CurrentColor.Color;
         CurrentColorIndex = newColorIndex;
 
         OnColorChanged?.Invoke(CurrentColor);
+    }
+
+    public ColorData GetNextItem(List<ColorData> targetList, int index)
+    {
+        int newIndex = index + 1;
+
+        if (newIndex >= targetList.Count)
+        {
+            newIndex = 0;
+        }
+
+        return targetList[newIndex];
+    }
+
+    public ColorData GetPreviousItem(List<ColorData> targetList, int index)
+    {
+        int newIndex = index - 1;
+
+        if (newIndex < 0)
+        {
+            newIndex = targetList.Count -1;
+        }
+
+        return targetList[newIndex];
     }
 }

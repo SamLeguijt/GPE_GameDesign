@@ -39,6 +39,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip audio, bool loop)
     {
+        if (!GameManager.Instance.EnableMusic)
+            return;
+
         musicAudioSource.loop = loop;
         musicAudioSource.clip = audio;
         musicAudioSource.Play();
@@ -46,6 +49,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip, bool loop, float pitch)
     {
+        if (!GameManager.Instance.EnableSFX)
+            return;
+
         sfxAudioSource.clip = clip;
         sfxAudioSource.pitch = pitch;
         sfxAudioSource.loop = loop;
@@ -87,7 +93,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayShootSFX()
     {
-        float pitch = 1 + Random.Range(randomPitchRangeMin, randomPitchRangeMax);
+        float pitch = 1 + Random.Range(-0.5f, 0.5f);
 
         PlaySFX(shootClip, false, pitch);
     }

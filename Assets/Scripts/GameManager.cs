@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public float LoadGameOverSceneDelay { get; private set; } = 3f;
     [field: SerializeField] public float DecreasedSimulationSpeed { get; private set; } = .75f;
     [field: SerializeField] public float DecreasedSpeedDuration { get; private set; } = 2.5f;
+    [field: SerializeField] public bool EnableMusic { get; private set; } = false;
+    [field: SerializeField] public bool EnableSFX { get; private set; } = false;
     [SerializeField] public float SimulationSpeed { get; private set; } = 1f;
 
     public bool IsGameActive { get; private set; } = true; 
