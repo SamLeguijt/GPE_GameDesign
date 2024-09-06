@@ -32,5 +32,6 @@ public class PlayerScore : MonoBehaviour
         CurrentScore += 100f;
 
         scoreTMP.text = CurrentScore.ToString();
+        AudioManager.Instance.PlayScoreIncreaseSFX();
     }
 }

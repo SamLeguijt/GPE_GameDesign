@@ -31,6 +31,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnShootInputReceivedEvent()
     {
+        AudioManager.Instance.PlayShootSFX();
         Projectile bullet = Instantiate(projectilePRefab, firePoint.position, Quaternion.identity);
         bullet.Instantiate(this);
     }

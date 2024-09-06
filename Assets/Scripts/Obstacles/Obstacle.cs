@@ -86,6 +86,7 @@ public class Obstacle : MonoBehaviour
 
         if (transform.position.y < (-BottomBorder - spriteSizeHalfedY))
         {
+            AudioManager.Instance.PlayObjectEscapedSFX();
             ObstacleEscapedEvent?.Invoke(this);
             isActive = false;
             Destroy(gameObject);
