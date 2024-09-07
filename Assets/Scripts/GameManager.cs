@@ -8,17 +8,20 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     private const string MAIN_SCENE = "Main";
-    private const string GAME_OVER_SCENE = "GameOver";
 
+    public delegate void GameStateHandler();
     public delegate void GameSpeedHandler(float newSpeed);
     public event GameSpeedHandler GameSpeedChanged;
+    public event GameStateHandler GameStartedEvent;
+    public event GameStateHandler GameEndedEvent;
 
     [field: Header("References")]
     [field: SerializeField] public PlayerHealthController PlayerHealth { get; private set; }
     [field: SerializeField] public LaneManager LaneManager { get; private set; }
     [field: SerializeField] public Camera MainCamera { get; private set; }
     [field: SerializeField] public GameObject GameOverUI { get; private set; }
-    [field: SerializeField] public ColorContainer ColorContainer { get; private set; }  
+    [field: SerializeField] public GameObject StartGameUI { get; private set; }
+    [field: SerializeField] public ColorContainer ColorContainer { get; private set; }
 
 
     [field: Header("Settings")]
@@ -28,9 +31,9 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public float DecreasedSpeedDuration { get; private set; } = 2.5f;
     [field: SerializeField] public bool EnableMusic { get; private set; } = false;
     [field: SerializeField] public bool EnableSFX { get; private set; } = false;
-    [SerializeField] public float SimulationSpeed { get; private set; } = 1f;
+    [SerializeField] public float SimulationSpeed { get; private set; } = 0f;
 
-    public bool IsGameActive { get; private set; } = true; 
+    public bool IsGameActive { get; private set; } = false;
 
     private Coroutine decreasedSpeedRoutine = null;
 
@@ -65,21 +68,20 @@ public class GameManager : MonoBehaviour
         GameOverUI.SetActive(false);
         AudioManager.Instance.PlayGameMusic();
     }
-    
+
     private void OnPlayerDeathEvent()
     {
-        //Invoke("LoadGameOverScene", LoadGameOverSceneDelay);
-
         AudioManager.Instance.PlayGameOverClip();
         GameOverUI.SetActive(true);
         SimulationSpeed = 0f;
         IsGameActive = false;
+        GameEndedEvent?.Invoke();
     }
 
     private void OnPlayerLoseLifeEvent()
     {
-        //if (decreasedSpeedRoutine == null)
-        //StartCoroutine(DecreaseGameSpeedCoroutine());
+        if (decreasedSpeedRoutine == null)
+            StartCoroutine(DecreaseGameSpeedCoroutine());
     }
 
     private IEnumerator DecreaseGameSpeedCoroutine()
@@ -102,14 +104,18 @@ public class GameManager : MonoBehaviour
         Vector2 screenBottomLeft = MainCamera.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 screenTopRight = MainCamera.ViewportToWorldPoint(new Vector2(1, 1));
 
-        
+
 
         return new Vector2(screenTopRight.x, screenTopRight.y);
     }
-    #region SceneManagement
-    private void LoadGameOverScene()
+    #region GameStates
+
+    public void StartGame()
     {
-        //SceneManager.LoadScene(GAME_OVER_SCENE);
+        StartGameUI.SetActive(false);
+        SimulationSpeed = 1f;
+        IsGameActive = true;
+        GameStartedEvent?.Invoke();
     }
 
     public void ReplayGame()

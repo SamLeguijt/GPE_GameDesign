@@ -38,18 +38,23 @@ public class PlayerColorController : MonoBehaviour
 
     private void OnColorSwitchLeftInputReceivedEvent()
     {
+        if (!GameManager.Instance.IsGameActive)
+            return;
+
         SwitchActiveColor(-1);
     }
 
     private void OnColorSwitchRightInputReceivedEvent()
     {
+        if (!GameManager.Instance.IsGameActive)
+            return;
+        
         SwitchActiveColor(1);
     }
 
     private void SwitchActiveColor(int direction)
     {
-        if (!GameManager.Instance.IsGameActive)
-            return;
+
 
         direction = Mathf.Clamp(direction, -1, 1);
 

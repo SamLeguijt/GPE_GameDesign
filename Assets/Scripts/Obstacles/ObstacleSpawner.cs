@@ -25,6 +25,18 @@ public class ObstacleSpawner : MonoBehaviour
         StartSpawningObstacles();
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.GameStartedEvent += StartSpawningObstacles;    
+        GameManager.Instance.GameEndedEvent += StopSpawningObstacles;    
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.GameStartedEvent -= StartSpawningObstacles;
+        GameManager.Instance.GameEndedEvent -= StopSpawningObstacles;
+    }
+
     private void SetupSpawnPositions()
     {
         spawnPositons = new Vector2[3];

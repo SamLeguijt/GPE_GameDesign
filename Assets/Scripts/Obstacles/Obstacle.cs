@@ -24,6 +24,21 @@ public class Obstacle : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float spriteSizeHalfedY;
 
+    private void OnEnable()
+    {
+        GameManager.Instance.GameEndedEvent += OnGameEndedEvent;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.GameEndedEvent -= OnGameEndedEvent;
+    }
+
+    private void OnGameEndedEvent()
+    {
+        isActive = false;
+    }
+
     private void Awake()
     {
         obstacleCollider = GetComponent<Collider2D>();
