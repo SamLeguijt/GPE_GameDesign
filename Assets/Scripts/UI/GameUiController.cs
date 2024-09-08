@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUiController : MonoBehaviour
 {
+    [Header("Component references")]
+    [SerializeField] private PlayerHealthController playerHealth = null;
+
     [Header("UI References")]
     [SerializeField] private GameObject backgroundOverlay = null;
+    [SerializeField] private GameObject screenFlashUI = null;
     [SerializeField, Space] private GameObject gameOverUI = null;
     [SerializeField, Space] private GameObject startGameUI = null;
     [SerializeField] private GameObject controlsUI = null;
@@ -15,7 +20,9 @@ public class GameUiController : MonoBehaviour
     [SerializeField] private GameObject playerHealthUI = null;
     [SerializeField] private GameObject playerColorUI = null;
 
+    private Image screenFlashImg = null;
 
+    private Coroutine screenFlashRoutine = null;
     private void Awake()
     {
         backgroundOverlay.SetActive(true);
@@ -36,10 +43,19 @@ public class GameUiController : MonoBehaviour
     {
         GameManager.Instance.GameStartedEvent += OnGameStartEvent;
         GameManager.Instance.GameEndedEvent += OnGameEndEvent;
+
+        screenFlashImg = screenFlashUI.GetComponent<Image>();
+    }
+
+    private void OnEnable()
+    {
+        playerHealth.PlayerLoseLifeEvent += OnPlayerLoseLifeEvent;
     }
 
     private void OnDisable()
     {
+        playerHealth.PlayerLoseLifeEvent -= OnPlayerLoseLifeEvent;
+
         GameManager.Instance.GameStartedEvent += OnGameStartEvent;
         GameManager.Instance.GameEndedEvent += OnGameEndEvent;
     }
@@ -59,5 +75,56 @@ public class GameUiController : MonoBehaviour
 
         playerColorUI.transform.parent = backgroundOverlay.transform;
         gameOverUI.SetActive(true);
+    }
+
+    private void OnPlayerLoseLifeEvent()
+    {
+        PerformScreenFlash();
+    }
+
+    private void PerformScreenFlash()
+    {
+        if (screenFlashRoutine != null)
+            StopCoroutine(screenFlashRoutine);
+
+        screenFlashRoutine = StartCoroutine(ScreenFlashCoroutine());
+    }
+
+    private IEnumerator ScreenFlashCoroutine()
+    {
+        if (screenFlashImg == null)
+            yield break;
+
+        float elapsed = 0f;
+        float inDuration = GameManager.Instance.ScreenFlashFadeInDuration;
+        float outDuration = GameManager.Instance.DecreasedSpeedDuration - GameManager.Instance.ScreenFlashFadeInDuration;
+        float intensity = GameManager.Instance.ScreenFlashAlphaIntensity / 255;
+
+        while (elapsed < inDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Lerp(0, intensity, elapsed / inDuration);
+            screenFlashImg.color = new Color(screenFlashImg.color.r, screenFlashImg.color.g, screenFlashImg.color.b, t);
+
+            if (Mathf.Abs(screenFlashImg.color.a - intensity) <= 0.01f)
+                break;
+
+            yield return null;
+        }
+
+        elapsed = 0f;
+
+        while (elapsed < outDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Lerp(intensity, 0, elapsed / outDuration);
+            screenFlashImg.color = new Color(screenFlashImg.color.r, screenFlashImg.color.g, screenFlashImg.color.b, t);
+
+            if (screenFlashImg.color.a <= 0)
+                break;
+
+            yield return null;
+
+        }
     }
 }

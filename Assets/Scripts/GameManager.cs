@@ -29,7 +29,11 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public float DecreasedSpeedDuration { get; private set; } = 2.5f;
     [field: SerializeField] public bool EnableMusic { get; private set; } = false;
     [field: SerializeField] public bool EnableSFX { get; private set; } = false;
+
+    [field: SerializeField] public float ScreenFlashAlphaIntensity { get; private set; } = 200f;
+    [field: SerializeField] public float ScreenFlashFadeInDuration { get; private set; } = .1f;
     [SerializeField] public float SimulationSpeed { get; private set; } = 0f;
+
 
     public bool IsGameActive { get; private set; } = false;
 
