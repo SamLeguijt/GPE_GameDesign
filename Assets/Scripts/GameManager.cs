@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public PlayerHealthController PlayerHealth { get; private set; }
     [field: SerializeField] public LaneManager LaneManager { get; private set; }
     [field: SerializeField] public Camera MainCamera { get; private set; }
-    [field: SerializeField] public GameObject GameOverUI { get; private set; }
-    [field: SerializeField] public GameObject StartGameUI { get; private set; }
     [field: SerializeField] public ColorContainer ColorContainer { get; private set; }
 
 
@@ -65,14 +63,12 @@ public class GameManager : MonoBehaviour
         if (MainCamera == null)
             MainCamera = Camera.main;
 
-        GameOverUI.SetActive(false);
         AudioManager.Instance.PlayGameMusic();
     }
 
     private void OnPlayerDeathEvent()
     {
         AudioManager.Instance.PlayGameOverClip();
-        GameOverUI.SetActive(true);
         SimulationSpeed = 0f;
         IsGameActive = false;
         GameEndedEvent?.Invoke();
@@ -112,7 +108,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartGameUI.SetActive(false);
         SimulationSpeed = 1f;
         IsGameActive = true;
         GameStartedEvent?.Invoke();

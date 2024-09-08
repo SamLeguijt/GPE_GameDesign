@@ -7,15 +7,11 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     public delegate void PlayerMoveLanesHandler(Lane targetLane);
-    public delegate void PlayerJumpHandler();
 
     public event PlayerMoveLanesHandler StartLaneSwapEvent;
     public event PlayerMoveLanesHandler StopLaneSwapEvent;
 
-    public event PlayerJumpHandler StartJumpEvent;
-    public event PlayerJumpHandler StopJumpEvent;
-
-    public bool AllowedToMove { get; private set; } = true;
+    public bool AllowedToMove { get; private set; } = false;
     public Lane CurrentLane { get; private set; }
 
     [Header("References")]
@@ -63,8 +59,20 @@ public class PlayerMovementController : MonoBehaviour
     {
         player.position = new Vector3(CurrentLane.Position.x, player.position.y, player.position.z);
         CurrentLane = laneManager.MiddleLane;
+
+        GameManager.Instance.GameStartedEvent += OnGameStartEvent;
+        GameManager.Instance.GameEndedEvent += OnGameEndedEvent;
     }
 
+    private void OnGameStartEvent()
+    {
+        AllowedToMove = true;
+    }
+
+    private void OnGameEndedEvent()
+    {
+        AllowedToMove = false;
+    }
 
     private void OnLeftMoveInputReceivedEvent()
     {
@@ -94,6 +102,9 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnRightMoveInputReceivedEvent()
     {
+        if (!AllowedToMove)
+            return;
+
         if (isSwappingLanes || CurrentLane.LaneType == LaneEnum.Right)
             return;
 

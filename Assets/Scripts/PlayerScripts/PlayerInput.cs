@@ -20,43 +20,60 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < leftMoveKeys.Count; i++)
+        if (leftMoveKeys.Count > 0)
         {
-            if (Input.GetKeyDown(leftMoveKeys[i]))
+            for (int i = 0; i < leftMoveKeys.Count; i++)
             {
-                MoveLeftInput?.Invoke();
+                if (Input.GetKeyDown(leftMoveKeys[i]))
+                {
+                    MoveLeftInput?.Invoke();
+                }
             }
         }
 
-        for (int i = 0; i < rightMoveKeys.Count; i++)
+        if (rightMoveKeys.Count > 0)
         {
-            if (Input.GetKeyDown(rightMoveKeys[i]))
+            for (int i = 0; i < rightMoveKeys.Count; i++)
             {
-                MoveRightInput?.Invoke();
+                if (Input.GetKeyDown(rightMoveKeys[i]))
+                {
+                    MoveRightInput?.Invoke();
+                }
             }
         }
 
-        for (int i = 0; i < shootKeys.Count; i++)
+        if (shootKeys.Count > 0)
         {
-            if (Input.GetKeyDown(shootKeys[i]))
+            for (int i = 0; i < shootKeys.Count; i++)
             {
-                ShootInput?.Invoke();
+                if (Input.GetKeyDown(shootKeys[i]))
+                {
+                    ShootInput?.Invoke();
+                }
             }
         }
 
-        for (int i = 0; i < leftColorSwitchKeys.Count; i++)
+
+        if (leftColorSwitchKeys.Count > 0)
         {
-            if (Input.GetKeyDown(leftColorSwitchKeys[i]))
+            for (int i = 0; i < leftColorSwitchKeys.Count; i++)
             {
-                SwitchColorLeftInput?.Invoke();
+                if (Input.GetKeyDown(leftColorSwitchKeys[i]))
+                {
+                    SwitchColorLeftInput?.Invoke();
+                }
             }
         }
-        
-        for (int i = 0; i < rightColorSwitchKeys.Count; i++)
+
+
+        if (rightColorSwitchKeys.Count > 0)
         {
-            if (Input.GetKeyDown(rightColorSwitchKeys[i]))
+            for (int i = 0; i < rightColorSwitchKeys.Count; i++)
             {
-                SwitchColorRightInput?.Invoke();
+                if (Input.GetKeyDown(rightColorSwitchKeys[i]))
+                {
+                    SwitchColorRightInput?.Invoke();
+                }
             }
         }
     }
