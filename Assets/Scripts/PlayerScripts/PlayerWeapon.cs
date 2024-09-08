@@ -7,6 +7,7 @@ public class PlayerWeapon : MonoBehaviour
     public float ProjectileSpeed => projectileSpeed;
 
     public ColorData CurrentColor {  get; private set; }
+    public bool AllowedToShoot { get; private set; } = false;
 
     [Header("References")]
     [SerializeField] private Transform firePoint = null;
@@ -17,20 +18,35 @@ public class PlayerWeapon : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float projectileSpeed = 1f;
 
-    private Camera cam = null;
+    private void Start()
+    {
+        GameManager.Instance.GameStartedEvent += OnGameStartEvent;
+        GameManager.Instance.GameEndedEvent += OnGameEndEvent;
+    }
+
     private void OnEnable()
     {
         inputController.ShootInput += OnShootInputReceivedEvent;
-        playerColor.OnColorChanged += OnColorChangedEvent;;
+        playerColor.OnColorChanged += OnColorChangedEvent;
     }
 
     private void OnDisable()
     {
         inputController.ShootInput -= OnShootInputReceivedEvent;
+        GameManager.Instance.GameStartedEvent -= OnGameStartEvent;
+        GameManager.Instance.GameEndedEvent -= OnGameEndEvent;
     }
 
     private void OnShootInputReceivedEvent()
     {
+        ShootBullet();
+    }
+
+    private void ShootBullet()
+    {
+        if (!AllowedToShoot)
+            return;
+
         AudioManager.Instance.PlayShootSFX();
         Projectile bullet = Instantiate(projectilePRefab, firePoint.position, Quaternion.identity);
         bullet.Instantiate(this);
@@ -39,5 +55,15 @@ public class PlayerWeapon : MonoBehaviour
     private void OnColorChangedEvent(ColorData colorData)
     {
         CurrentColor = colorData;
+    }
+
+    private void OnGameStartEvent()
+    {
+        AllowedToShoot = true;
+    }
+
+    private void OnGameEndEvent()
+    {
+        AllowedToShoot = false;
     }
 }
