@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.020111911, y: -1.7, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
+  m_Sprite: {fileID: -2111953396, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.8828125}
+  m_Size: {x: 0.4375, y: 0.40625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,7 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49e2399090201e419669808fb3c2dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ObstacleColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  obstacleSprites:
+  - {fileID: 71662314, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
+  - {fileID: 1431153822, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
+  - {fileID: -1069554547, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
+  - {fileID: -29920829, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
+  - {fileID: -321074109, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
+  - {fileID: 799668843, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
+  - {fileID: -974114190, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
+  - {fileID: -2111953396, guid: 1c3060b05d8bd5449bd9344aed4c26ab, type: 3}
 --- !u!61 &120686136281852743
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,18 +140,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.000000014901161, y: 0.006852269}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.8828125}
-    newSize: {x: 1, y: 0.8828125}
+    oldSize: {x: 0.4375, y: 0.4375}
+    newSize: {x: 0.4375, y: 0.40625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.8828125}
+  m_Size: {x: 0.48608145, y: 0.47167754}
   m_EdgeRadius: 0
 --- !u!50 &-6832448577779533975
 Rigidbody2D:

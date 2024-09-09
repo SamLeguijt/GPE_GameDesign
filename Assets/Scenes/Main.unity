@@ -1965,7 +1965,7 @@ Transform:
   m_GameObject: {fileID: 714541667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.569, z: 0}
+  m_LocalPosition: {x: 0, y: 0.032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4189,8 +4189,8 @@ MonoBehaviour:
   <LoadGameOverSceneDelay>k__BackingField: 3
   <DecreasedSimulationSpeed>k__BackingField: 0.25
   <DecreasedSpeedDuration>k__BackingField: 2.5
-  <EnableMusic>k__BackingField: 1
-  <EnableSFX>k__BackingField: 1
+  <EnableMusic>k__BackingField: 0
+  <EnableSFX>k__BackingField: 0
   <ScreenFlashAlphaIntensity>k__BackingField: 175
   <ScreenFlashFadeInDuration>k__BackingField: 0.1
 --- !u!4 &1603864587
@@ -4221,7 +4221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
-  spawnDelay: 3
+  spawnDelay: 2
   objectsPerSpawnTick: 1
   minObstacleSpeed: 0.5
   maxObstacleSpeed: 0.75
@@ -4637,6 +4637,7 @@ GameObject:
   - component: {fileID: 1965527304}
   - component: {fileID: 1965527307}
   - component: {fileID: 1965527308}
+  - component: {fileID: 1965527309}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4685,7 +4686,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 1086764405, guid: 7c74d34b3d747c046b81ba31f2ab98d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4706,7 +4707,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.62, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 714541668}
@@ -4796,6 +4797,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSprite: {fileID: 1965527301}
   inputController: {fileID: 1965527304}
+--- !u!95 &1965527309
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965527300}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9496cbf6f00a5904dab4fb8e2a723176, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2015465388
 GameObject:
   m_ObjectHideFlags: 0

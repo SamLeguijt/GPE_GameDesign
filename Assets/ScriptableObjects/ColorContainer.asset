@@ -12,8 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725c1b3ee2ed23d4c97272cf3e3ada59, type: 3}
   m_Name: ColorContainer
   m_EditorClassIdentifier: 
-  green: {r: 0, g: 0.8301887, b: 0.14627661, a: 1}
-  blue: {r: 0, g: 0.5501585, b: 1, a: 1}
-  red: {r: 0.9056604, g: 0, b: 0, a: 1}
-  purple: {r: 0.79235554, g: 0, b: 1, a: 1}
-  orange: {r: 1, g: 0.47833472, b: 0, a: 1}
+  <Green>k__BackingField:
+    Color: {r: 0, g: 0.7924528, b: 0.009323021, a: 1}
+    ColorType: 0
+    MinSpeed: 0.35
+    MaxSpeed: 0.5
+    Score: 10
+  <Blue>k__BackingField:
+    Color: {r: 0, g: 0.3188672, b: 1, a: 1}
+    ColorType: 1
+    MinSpeed: 0.4
+    MaxSpeed: 0.55
+    Score: 25
+  <Red>k__BackingField:
+    Color: {r: 0.9528302, g: 0.0764062, b: 0.0764062, a: 1}
+    ColorType: 2
+    MinSpeed: 0.5
+    MaxSpeed: 0.65
+    Score: 50
+  <Purple>k__BackingField:
+    Color: {r: 0.54426956, g: 0, b: 1, a: 1}
+    ColorType: 3
+    MinSpeed: 0.65
+    MaxSpeed: 0.8
+    Score: 100
+  <Orange>k__BackingField:
+    Color: {r: 1, g: 0.5974768, b: 0, a: 1}
+    ColorType: 4
+    MinSpeed: 0.8
+    MaxSpeed: 1
+    Score: 150

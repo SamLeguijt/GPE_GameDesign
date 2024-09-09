@@ -16,6 +16,7 @@ public class PlayerColorController : MonoBehaviour
 
     public List<ColorData> AllColors { get; private set; } = new List<ColorData>();
 
+
     private void Start()
     {
         AllColors = GameManager.Instance.ColorContainer.GetAllColorData();

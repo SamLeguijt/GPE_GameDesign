@@ -12,7 +12,8 @@ public class Obstacle : MonoBehaviour
 
     public static float BottomBorder = 2.2f;
 
-    public ColorData ColorData;
+    public ColorData ColorData { get; private set; }
+    [SerializeField] private Sprite[] obstacleSprites = null;
 
     private Collider2D obstacleCollider = null;
     private bool canBeDestroyed = false;
@@ -45,6 +46,12 @@ public class Obstacle : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteSizeHalfedY = spriteRenderer.sprite.bounds.size.y / 2;
 
+        if (obstacleSprites != null && obstacleSprites.Length > 0)
+        {
+            int randomIndex = Random.Range(0, obstacleSprites.Length);
+            spriteRenderer.sprite = obstacleSprites[randomIndex];
+        }
+
         obstacleCollider.isTrigger = true;
 
         screenBounds = GameManager.Instance.GetScreenBounds();
@@ -53,10 +60,10 @@ public class Obstacle : MonoBehaviour
         isActive = true;
     }
 
-    public void Initialize(ColorData colorData, float fallSpeed)
+    public void Initialize(ColorData colorData)
     {
         this.ColorData = colorData;
-        this.fallSpeed = fallSpeed;
+        this.fallSpeed = Random.Range(ColorData.MinSpeed, ColorData.MaxSpeed);
 
         spriteRenderer.color = this.ColorData.Color;
     }

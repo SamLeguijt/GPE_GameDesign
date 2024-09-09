@@ -10,8 +10,6 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float spawnDelay = 1.5f;
     [SerializeField] private int objectsPerSpawnTick = 3;
-    [SerializeField] private float minObstacleSpeed = 1f;
-    [SerializeField] private float maxObstacleSpeed = 5f;
 
     private Vector2[] spawnPositons;
     private List<ColorData> colors = new List<ColorData>();
@@ -79,7 +77,7 @@ public class ObstacleSpawner : MonoBehaviour
                 Vector2 spawnPos = GetRandomSpawnPosition();
 
                 Obstacle obstacle = Instantiate(obstaclePrefab, spawnPos, Quaternion.identity).GetComponent<Obstacle>() ;
-                obstacle.Initialize(colors[GetRandomInt(0, colors.Count)], GetRandomFloat(minObstacleSpeed, maxObstacleSpeed));
+                obstacle.Initialize(colors[GetRandomInt(0, colors.Count)]);
             }
 
             elapsedTime += Time.deltaTime;

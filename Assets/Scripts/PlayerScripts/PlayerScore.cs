@@ -29,7 +29,7 @@ public class PlayerScore : MonoBehaviour
 
     private void OnObstacleProjectileCollisionEvent(Obstacle obstacle, Projectile projectile)
     {
-        CurrentScore += 100f;
+        CurrentScore += obstacle.ColorData.Score;
 
         scoreTMP.text = CurrentScore.ToString();
         AudioManager.Instance.PlayScoreIncreaseSFX();
