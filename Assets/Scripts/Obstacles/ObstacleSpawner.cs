@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    public delegate void ObjectSpawnerHandler();
+    public event ObjectSpawnerHandler OnObjectBudgetEmpty;
+
     public const int GREEN_INDEX = 0;
     public const int BLUE_INDEX = 1;
     public const int RED_INDEX = 2;
@@ -15,9 +19,9 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject obstaclePrefab = null;
 
-    [Header("Spawn Settings")]
-    [SerializeField] private float spawnDelay = 1.5f;
-    [SerializeField] private int objectsPerSpawnTick = 3;
+    [field: Header("Spawn Settings")]
+    [field: SerializeField] public float SpawnDelay { get; private set; } = 1.5f;
+    [field: SerializeField] public float ObjectsPerSpawnTick { get; private set; } = 3f;
 
     [field: Header("Object budgets")]
     [field: SerializeField] public int GreenBudget { get; private set; } = 1;
@@ -37,15 +41,15 @@ public class ObstacleSpawner : MonoBehaviour
     {
         colors = GameManager.Instance.ColorContainer.GetAllColorData();
 
-        ResetObstacleBudget();
+        ResetObstacleBudget(false);
         SetupSpawnPositions();
         StartSpawningObstacles();
     }
 
-    public void SetSpawnSettings(float spawnDelay, int objectsPerSpawn)
+    public void SetSpawnSettings(float spawnDelay, float objectsPerSpawn)
     {
-        this.spawnDelay = spawnDelay;
-        this.objectsPerSpawnTick = objectsPerSpawn;
+        this.SpawnDelay = spawnDelay;
+        this.ObjectsPerSpawnTick = objectsPerSpawn;
     }
 
     public void SetObjectBudgets(int green, int blue, int red, int purple, int orange)
@@ -57,7 +61,8 @@ public class ObstacleSpawner : MonoBehaviour
         OrangeBudget = orange;
     }
 
-    private void ResetObstacleBudget()
+
+    public void ResetObstacleBudget(bool shuffleList = true)
     {
         obstaclesBudgetTable.Clear();
 
@@ -92,7 +97,8 @@ public class ObstacleSpawner : MonoBehaviour
                 obstaclesBudgetTable.Add(ORANGE_INDEX);
         }
 
-        obstaclesBudgetTable = GetShuffledList(obstaclesBudgetTable);
+        if (shuffleList)
+            obstaclesBudgetTable = GetShuffledList(obstaclesBudgetTable);
 
         for (int i = 0; i < obstaclesBudgetTable.Count; i++)
         {
@@ -140,7 +146,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private IEnumerator SpawnObjectsCoroutine()
     {
-        WaitForSeconds delay = new WaitForSeconds(spawnDelay);
+        WaitForSeconds delay = new WaitForSeconds(SpawnDelay);
 
         float elapsedTime = 0f;
         float maxDuration = 100000f;
@@ -149,7 +155,7 @@ public class ObstacleSpawner : MonoBehaviour
         {
             yield return delay;
 
-            for (int i = 0; i < objectsPerSpawnTick; i++)
+            for (int i = 0; i < (int)ObjectsPerSpawnTick; i++)
             {
                 Vector2 spawnPos = GetRandomSpawnPosition();
 
@@ -161,10 +167,8 @@ public class ObstacleSpawner : MonoBehaviour
                 }
                 else
                 {
-                    ResetObstacleBudget();
-
-                    int index = coloredObstaclesQueue.Dequeue();
-                    obstacle.Initialize(colors[index]);
+                    OnObjectBudgetEmpty?.Invoke();
+                    Destroy(obstacle.gameObject);
                 }
             }
 

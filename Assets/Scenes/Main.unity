@@ -4182,6 +4182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerHealth>k__BackingField: {fileID: 1965527305}
+  <ObstacleSpawner>k__BackingField: {fileID: 1603864588}
   <LaneManager>k__BackingField: {fileID: 1603864585}
   <MainCamera>k__BackingField: {fileID: 519420031}
   <ColorContainer>k__BackingField: {fileID: 11400000, guid: a50d83cddd18d774cb8576f01cdd05f0, type: 2}
@@ -4221,13 +4222,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
-  spawnDelay: 2.04
-  objectsPerSpawnTick: 1
-  <GreenBudget>k__BackingField: 5
-  <BlueBudget>k__BackingField: 0
-  <RedBudget>k__BackingField: 0
-  <PurpleBudget>k__BackingField: 0
-  <OrangeBudget>k__BackingField: 0
+  <SpawnDelay>k__BackingField: 2.5
+  <ObjectsPerSpawnTick>k__BackingField: 1
+  <GreenBudget>k__BackingField: 1
+  <BlueBudget>k__BackingField: 1
+  <RedBudget>k__BackingField: 1
+  <PurpleBudget>k__BackingField: 1
+  <OrangeBudget>k__BackingField: 1
 --- !u!1 &1635745195
 GameObject:
   m_ObjectHideFlags: 0

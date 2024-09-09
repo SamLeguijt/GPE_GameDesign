@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [field: Header("References")]
     [field: SerializeField] public PlayerHealthController PlayerHealth { get; private set; }
+    [field: SerializeField] public ObstacleSpawner ObstacleSpawner { get; private set; }
     [field: SerializeField] public LaneManager LaneManager { get; private set; }
     [field: SerializeField] public Camera MainCamera { get; private set; }
     [field: SerializeField] public ColorContainer ColorContainer { get; private set; }
@@ -39,12 +40,19 @@ public class GameManager : MonoBehaviour
 
     private Coroutine decreasedSpeedRoutine = null;
 
+    private int spawnerBudgetsEmptied = 0;
+
     private void OnEnable()
     {
         if (PlayerHealth != null)
         {
             PlayerHealth.PlayerLoseLifeEvent += OnPlayerLoseLifeEvent;
             PlayerHealth.PlayerGameOverEvent += OnPlayerDeathEvent;
+        }
+
+        if (ObstacleSpawner != null)
+        {
+            ObstacleSpawner.OnObjectBudgetEmpty += OnObstacleSpawnerEmptyEvent;
         }
     }
 
@@ -55,6 +63,8 @@ public class GameManager : MonoBehaviour
             PlayerHealth.PlayerLoseLifeEvent -= OnPlayerLoseLifeEvent;
             PlayerHealth.PlayerGameOverEvent -= OnPlayerDeathEvent;
         }
+
+        ObstacleSpawner.OnObjectBudgetEmpty -= OnObstacleSpawnerEmptyEvent;
     }
 
     private void Awake()
@@ -82,6 +92,35 @@ public class GameManager : MonoBehaviour
     {
         if (decreasedSpeedRoutine == null)
             StartCoroutine(DecreaseGameSpeedCoroutine());
+    }
+
+    private void OnObstacleSpawnerEmptyEvent()
+    {
+        spawnerBudgetsEmptied++;
+        SimulationSpeed += 0.05f;
+        GameSpeedChanged?.Invoke(SimulationSpeed);
+
+        if (spawnerBudgetsEmptied == 1)
+        {
+            ObstacleSpawner.SetObjectBudgets(5, 4, 3, 2, 1);
+        }
+        else if (spawnerBudgetsEmptied == 2)
+        {
+            ObstacleSpawner.SetObjectBudgets(8, 6, 5, 3, 1);
+        }
+        else if (spawnerBudgetsEmptied == 3)
+        {
+            ObstacleSpawner.SetObjectBudgets(8, 6, 6, 4, 2);
+
+        }
+        else if (spawnerBudgetsEmptied >= 4)
+        {
+
+            ObstacleSpawner.SetObjectBudgets(10, 8, 6, 5, 3);
+        }
+
+        ObstacleSpawner.SetSpawnSettings(ObstacleSpawner.SpawnDelay - 0.05f,ObstacleSpawner.ObjectsPerSpawnTick + .5f);
+        ObstacleSpawner.ResetObstacleBudget();
     }
 
     private IEnumerator DecreaseGameSpeedCoroutine()
