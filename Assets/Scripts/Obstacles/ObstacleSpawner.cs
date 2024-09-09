@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
@@ -18,7 +20,7 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private int objectsPerSpawnTick = 3;
 
     [field: Header("Object budgets")]
-    [field: SerializeField] public int GreenBudget {get; private set;} = 1;
+    [field: SerializeField] public int GreenBudget { get; private set; } = 1;
     [field: SerializeField] public int BlueBudget { get; private set; } = 0;
     [field: SerializeField] public int RedBudget { get; private set; } = 0;
     [field: SerializeField] public int PurpleBudget { get; private set; } = 0;
@@ -29,6 +31,7 @@ public class ObstacleSpawner : MonoBehaviour
     private Coroutine spawningRoutine = null;
 
     private List<int> obstaclesBudgetTable = new List<int>();
+    private Queue<int> coloredObstaclesQueue = new Queue<int>();
 
     private void Start()
     {
@@ -41,14 +44,14 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void SetSpawnSettings(float spawnDelay, int objectsPerSpawn)
     {
-        this.spawnDelay = spawnDelay; 
+        this.spawnDelay = spawnDelay;
         this.objectsPerSpawnTick = objectsPerSpawn;
     }
 
     public void SetObjectBudgets(int green, int blue, int red, int purple, int orange)
     {
         GreenBudget = green;
-        BlueBudget = blue; 
+        BlueBudget = blue;
         RedBudget = red;
         PurpleBudget = purple;
         OrangeBudget = orange;
@@ -87,6 +90,13 @@ public class ObstacleSpawner : MonoBehaviour
         {
             for (int i = 0; i < OrangeBudget; i++)
                 obstaclesBudgetTable.Add(ORANGE_INDEX);
+        }
+
+        obstaclesBudgetTable = GetShuffledList(obstaclesBudgetTable);
+
+        for (int i = 0; i < obstaclesBudgetTable.Count; i++)
+        {
+            coloredObstaclesQueue.Enqueue(obstaclesBudgetTable[i]);
         }
     }
 
@@ -133,7 +143,7 @@ public class ObstacleSpawner : MonoBehaviour
         WaitForSeconds delay = new WaitForSeconds(spawnDelay);
 
         float elapsedTime = 0f;
-        float maxDuration = 10f;
+        float maxDuration = 100000f;
 
         while (elapsedTime < maxDuration && GameManager.Instance.IsGameActive)
         {
@@ -145,13 +155,37 @@ public class ObstacleSpawner : MonoBehaviour
 
                 Obstacle obstacle = Instantiate(obstaclePrefab, spawnPos, Quaternion.identity).GetComponent<Obstacle>();
 
-                int randomColorIndex = GetRandomInt(0, obstaclesBudgetTable.Count);
-                int colorIndex = obstaclesBudgetTable[randomColorIndex];
-                obstacle.Initialize(colors[colorIndex]);
+                if (coloredObstaclesQueue.TryDequeue(out int colorIndex))
+                {
+                    obstacle.Initialize(colors[colorIndex]);
+                }
+                else
+                {
+                    ResetObstacleBudget();
+
+                    int index = coloredObstaclesQueue.Dequeue();
+                    obstacle.Initialize(colors[index]);
+                }
             }
 
             elapsedTime += Time.deltaTime;
         }
+    }
+
+    private List<int> GetShuffledList(List<int> toShuffle)
+    {
+        List<int> shuffledList = new List<int>(toShuffle);
+
+        for (int i = 0; i < shuffledList.Count; i++)
+        {
+            int randomIndex = Random.Range(i, shuffledList.Count);
+
+            int temp = shuffledList[i];
+            shuffledList[i] = shuffledList[randomIndex];
+            shuffledList[randomIndex] = temp;
+        }
+
+        return shuffledList;
     }
 
     private Vector2 GetRandomSpawnPosition()

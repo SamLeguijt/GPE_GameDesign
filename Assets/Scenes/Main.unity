@@ -4223,11 +4223,11 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 1488039449537637625, guid: 6bce5e24ec15ade4eac2e276f5e2cbc7, type: 3}
   spawnDelay: 2.04
   objectsPerSpawnTick: 1
-  greenBudget: 100
-  blueBudget: 0
-  redBudget: 0
-  purpleBudget: 0
-  orangeBudget: 0
+  <GreenBudget>k__BackingField: 5
+  <BlueBudget>k__BackingField: 0
+  <RedBudget>k__BackingField: 0
+  <PurpleBudget>k__BackingField: 0
+  <OrangeBudget>k__BackingField: 0
 --- !u!1 &1635745195
 GameObject:
   m_ObjectHideFlags: 0

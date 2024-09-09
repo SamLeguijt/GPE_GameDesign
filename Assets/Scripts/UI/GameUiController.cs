@@ -73,7 +73,7 @@ public class GameUiController : MonoBehaviour
     {
         backgroundOverlay.SetActive(true);
 
-        playerColorUI.transform.parent = backgroundOverlay.transform;
+        playerColorUI.transform.SetParent(backgroundOverlay.transform);
         gameOverUI.SetActive(true);
     }
 
