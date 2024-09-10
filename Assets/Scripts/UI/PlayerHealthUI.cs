@@ -32,7 +32,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void Start()
     {
-        float space = 32f;
+        float space = .25f;
 
         for (int i = 0; i < playerHealth.MaxLives; i++)
         {
