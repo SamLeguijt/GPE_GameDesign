@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         }
         else if (spawnerBudgetsEmptied == 2)
         {
-            ObstacleSpawner.SetObjectBudgets(8, 6, 5, 3, 1);
+            ObstacleSpawner.SetObjectBudgets(7, 6, 5, 3, 2);
         }
         else if (spawnerBudgetsEmptied == 3)
         {
@@ -116,10 +116,14 @@ public class GameManager : MonoBehaviour
         else if (spawnerBudgetsEmptied >= 4)
         {
 
-            ObstacleSpawner.SetObjectBudgets(10, 8, 6, 5, 3);
+            ObstacleSpawner.SetObjectBudgets(8, 7, 6, 5, 3);
         }
 
-        ObstacleSpawner.SetSpawnSettings(ObstacleSpawner.SpawnDelay - 0.05f,ObstacleSpawner.ObjectsPerSpawnTick + .5f);
+        float obstaclesPerSpawn = ObstacleSpawner.ObjectsPerSpawnTick;
+        if (ObstacleSpawner.ObjectsPerSpawnTick < 3f)
+            obstaclesPerSpawn += .5f;
+            
+        ObstacleSpawner.SetSpawnSettings(ObstacleSpawner.SpawnDelay - 0.10f, obstaclesPerSpawn);
         ObstacleSpawner.ResetObstacleBudget();
     }
 

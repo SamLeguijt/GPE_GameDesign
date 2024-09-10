@@ -57,7 +57,6 @@ public class Obstacle : MonoBehaviour
         screenBounds = GameManager.Instance.GetScreenBounds();
         projectileLayer = GameManager.Instance.ProjectileLayerIndex;
 
-        isActive = true;
     }
 
     public void Initialize(ColorData colorData)
@@ -66,6 +65,8 @@ public class Obstacle : MonoBehaviour
         this.fallSpeed = Random.Range(ColorData.MinSpeed, ColorData.MaxSpeed);
 
         spriteRenderer.color = this.ColorData.Color;
+        isActive = true;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -100,7 +101,7 @@ public class Obstacle : MonoBehaviour
 
         if (!canBeDestroyed)
         {
-            if (transform.position.y < (screenBounds.y - spriteSizeHalfedY))
+            if (transform.position.y <  2.9f)//(screenBounds.y - spriteSizeHalfedY * 2 ))
                 canBeDestroyed = true;
         }
 

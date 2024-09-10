@@ -1673,7 +1673,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 2
+  near clip plane: 1
   far clip plane: 10
   field of view: 34.2
   orthographic: 1
@@ -2525,6 +2525,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background_Sprite_480x640_v1
       objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3224898059068600715, guid: d568e05e54d1a2347b46b8e465f484b1, type: 3}
     - target: {fileID: 3626916397498700004, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -2536,6 +2544,18 @@ PrefabInstance:
     - target: {fileID: 3626916397498700004, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
       propertyPath: m_SortingLayerID
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2555,15 +2575,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: db8f2717bb49e04438e8cb59cdce44f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4130,8 +4150,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1114092959}
-  - {fileID: 1431040546}
   - {fileID: 1853361656}
+  - {fileID: 1431040546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603864584
@@ -4190,8 +4210,8 @@ MonoBehaviour:
   <LoadGameOverSceneDelay>k__BackingField: 3
   <DecreasedSimulationSpeed>k__BackingField: 0.25
   <DecreasedSpeedDuration>k__BackingField: 2.5
-  <EnableMusic>k__BackingField: 0
-  <EnableSFX>k__BackingField: 0
+  <EnableMusic>k__BackingField: 1
+  <EnableSFX>k__BackingField: 1
   <ScreenFlashAlphaIntensity>k__BackingField: 175
   <ScreenFlashFadeInDuration>k__BackingField: 0.1
 --- !u!4 &1603864587
@@ -4710,7 +4730,7 @@ Transform:
   m_GameObject: {fileID: 1965527300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.62, z: 0}
+  m_LocalPosition: {x: 0, y: -2.613, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5117,8 +5137,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1965527302}
     m_Modifications:
     - target: {fileID: 5373844757389793982, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_SortMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373844757389793982, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373844757389793982, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
       propertyPath: m_SortingOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373844757389793982, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373844757389793982, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
+      propertyPath: m_ApplyActiveColorSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6827151123214410808, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
