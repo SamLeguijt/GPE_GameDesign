@@ -20,16 +20,14 @@ public class PlayerWeapon : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float projectileSpeed = 1f;
 
-    private void Start()
-    {
-        GameManager.Instance.GameStartedEvent += OnGameStartEvent;
-        GameManager.Instance.GameEndedEvent += OnGameEndEvent;
-    }
+    private bool isGameStarted = false;
 
-    private void OnEnable()
+    private void Start()
     {
         inputController.ShootInput += OnShootInputReceivedEvent;
         playerColor.OnColorChanged += OnColorChangedEvent;
+        GameManager.Instance.GameStartedEvent += OnGameStartEvent;
+        GameManager.Instance.GameEndedEvent += OnGameEndEvent;
     }
 
     private void OnDisable()

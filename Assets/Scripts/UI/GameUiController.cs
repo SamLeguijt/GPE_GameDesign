@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class GameUiController : MonoBehaviour
 {
@@ -13,14 +16,17 @@ public class GameUiController : MonoBehaviour
     [SerializeField] private GameObject backgroundOverlay = null;
     [SerializeField] private GameObject screenFlashUI = null;
     [SerializeField, Space] private GameObject gameOverUI = null;
+    [SerializeField] private GameObject replayButton = null;
     [SerializeField, Space] private GameObject startGameUI = null;
+    [SerializeField] private GameObject startButton = null;
     [SerializeField] private GameObject controlsUI = null;
     [SerializeField] private GameObject instructionsUI = null;
     [SerializeField, Space] private GameObject playerScoreUI = null;
     [SerializeField] private GameObject playerHealthUI = null;
     [SerializeField] private GameObject playerColorUI = null;
-
     private Image screenFlashImg = null;
+
+    
 
     private Coroutine screenFlashRoutine = null;
     private void Awake()
@@ -36,8 +42,10 @@ public class GameUiController : MonoBehaviour
         playerHealthUI.SetActive(true);
         playerColorUI.SetActive(true);
 
-
     }
+
+
+    
 
     private void Start()
     {
@@ -45,8 +53,18 @@ public class GameUiController : MonoBehaviour
         GameManager.Instance.GameEndedEvent += OnGameEndEvent;
 
         screenFlashImg = screenFlashUI.GetComponent<Image>();
+
+
+
+        EventSystem.current.SetSelectedGameObject(startButton);
     }
 
+
+    private void Update()
+    {
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+
+    }
     private void OnEnable()
     {
         playerHealth.PlayerLoseLifeEvent += OnPlayerLoseLifeEvent;
@@ -72,6 +90,9 @@ public class GameUiController : MonoBehaviour
     private void OnGameEndEvent()
     {
         backgroundOverlay.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(replayButton);
+
 
         playerColorUI.transform.SetParent(backgroundOverlay.transform);
         gameOverUI.SetActive(true);
