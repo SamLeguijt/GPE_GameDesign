@@ -14,6 +14,8 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Projectile projectilePRefab = null;
     [SerializeField] private PlayerInput inputController = null;
     [SerializeField] private PlayerColorController playerColor = null;
+    [SerializeField] private Animator weaponAnimator = null;
+    [SerializeField] private string animatorShootClipName = "Shoot";
 
     [Header("Settings")]
     [SerializeField] private float projectileSpeed = 1f;
@@ -48,6 +50,7 @@ public class PlayerWeapon : MonoBehaviour
             return;
 
         AudioManager.Instance.PlayShootSFX();
+        weaponAnimator.Play(animatorShootClipName);
         Projectile bullet = Instantiate(projectilePRefab, firePoint.position, Quaternion.identity);
         bullet.Instantiate(this);
     }
