@@ -5222,7 +5222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLives: 3
-  currentLives: 0
+  currentLives: 1
   onDeathDestroyDelay: 3
   takeDamage: 0
 --- !u!114 &1965527306

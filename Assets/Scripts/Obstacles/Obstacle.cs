@@ -15,6 +15,13 @@ public class Obstacle : MonoBehaviour
     public ColorData ColorData { get; private set; }
     [SerializeField] private Sprite[] obstacleSprites = null;
 
+    [Header("Effect References")]
+    [SerializeField] private Animator hitEffectAnimator = null;
+    [SerializeField] private Animator hitMaskAnimator = null;
+    [SerializeField] private SpriteRenderer maskHitRenderer = null;
+    [SerializeField] private List<AnimationClip> hitAnimations = null;
+    [SerializeField] private List<AnimationClip> hitAnimationMasks = null;
+
     private Collider2D obstacleCollider = null;
     private bool canBeDestroyed = false;
     private bool isActive = false;
@@ -24,6 +31,8 @@ public class Obstacle : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private float spriteSizeHalfedY;
+
+    private int randomHitEffectAnimation = 0;
 
     private void OnEnable()
     {
@@ -59,14 +68,20 @@ public class Obstacle : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        randomHitEffectAnimation = Random.Range(0, hitAnimations.Count);
+    }
+
     public void Initialize(ColorData colorData)
     {
         this.ColorData = colorData;
         this.fallSpeed = Random.Range(ColorData.MinSpeed, ColorData.MaxSpeed);
 
         spriteRenderer.color = this.ColorData.Color;
-        isActive = true;
+        maskHitRenderer.color = this.ColorData.Color;   
 
+        isActive = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -87,8 +102,14 @@ public class Obstacle : MonoBehaviour
                         return;
 
                     ObstacleProjectileCollisionEvent?.Invoke(this, projectile);
+                    spriteRenderer.sprite = null;
+
+                    hitEffectAnimator.Play(hitAnimations[randomHitEffectAnimation].name);
+                    hitMaskAnimator.Play(hitAnimationMasks[randomHitEffectAnimation].name);
+
                     projectile.OnObstacleCollision(this);
-                    Destroy(gameObject);
+                    Destroy(gameObject, 1f);
+                    isActive = false;
                 }
             }
         }
