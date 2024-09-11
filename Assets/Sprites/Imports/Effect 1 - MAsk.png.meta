@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ffd565428c9174439f83869a526f7f1
+guid: a113e89ca47500d44a0a8344a13b6900
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,10 +110,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Effect3 Gameboy Spritesheet_0
+      name: Effect 1 - Sprite Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 128
         width: 32
         height: 32
@@ -124,17 +124,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e08849ebfb9d74f47be781e729283ef4
-      internalID: 49380296
+      spriteID: 60b0b75890a5be44588ff03fdec5ef16
+      internalID: -506250773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect3 Gameboy Spritesheet_1
+      name: Effect 1 - Sprite Sheet_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 96
         width: 32
         height: 32
@@ -145,17 +145,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 251d7ba9ed2577649a077c7c2b0af2ea
-      internalID: 209001819
+      spriteID: 3a33d9678a43a1a4fa4fae7bfe2394a8
+      internalID: 956769011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect3 Gameboy Spritesheet_2
+      name: Effect 1 - Sprite Sheet_2
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 64
         width: 32
         height: 32
@@ -166,17 +166,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6017bd0a7046cc4ca116dbd5fc9dbd1
-      internalID: -1018379377
+      spriteID: b76e0d0af909bdb4aa0249878176e4dd
+      internalID: -1515147366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect3 Gameboy Spritesheet_3
+      name: Effect 1 - Sprite Sheet_3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 32
         width: 32
         height: 32
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bce8fc7ba1b2184fb88eadc2f9525f3
-      internalID: -831780162
+      spriteID: 603072f0ab0069b469687d4abdbffeb7
+      internalID: 561928439
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Effect3 Gameboy Spritesheet_0: 49380296
-      Effect3 Gameboy Spritesheet_1: 209001819
-      Effect3 Gameboy Spritesheet_2: -1018379377
-      Effect3 Gameboy Spritesheet_3: -831780162
+      Effect 1 - Sprite Sheet_0: -506250773
+      Effect 1 - Sprite Sheet_1: 956769011
+      Effect 1 - Sprite Sheet_2: -1515147366
+      Effect 1 - Sprite Sheet_3: 561928439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

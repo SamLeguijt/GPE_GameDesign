@@ -71,6 +71,9 @@ public class Obstacle : MonoBehaviour
     private void Start()
     {
         randomHitEffectAnimation = Random.Range(0, hitAnimations.Count);
+
+        float zRot = Random.Range(0f, 360f);
+        hitEffectAnimator.gameObject.transform.rotation = Quaternion.Euler(0, 0, zRot);
     }
 
     public void Initialize(ColorData colorData)

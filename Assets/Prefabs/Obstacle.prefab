@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2204266208823910327}
   - component: {fileID: 3728782186366874180}
   m_Layer: 0
-  m_Name: MAsk
+  m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,11 +219,13 @@ MonoBehaviour:
   hitMaskAnimator: {fileID: 3728782186366874180}
   maskHitRenderer: {fileID: 2204266208823910327}
   hitAnimations:
-  - {fileID: 7400000, guid: 6a9ce6f646d8ea14eb0b2532bf7d8aa0, type: 2}
+  - {fileID: 7400000, guid: 9aeef021d1cc03f4faaea542db997c2e, type: 2}
   - {fileID: 7400000, guid: 4ea458fca0da0584fa17ce052e20b843, type: 2}
+  - {fileID: 7400000, guid: 8f122891c31e41f45b8025953b5651ce, type: 2}
   hitAnimationMasks:
-  - {fileID: 7400000, guid: feb44811462c7b34792b8ae941ca9989, type: 2}
+  - {fileID: 7400000, guid: 164b64f69085a174b8a36487bcdebaa8, type: 2}
   - {fileID: 7400000, guid: cff1e74782f779a4ea251010c83ad0cc, type: 2}
+  - {fileID: 7400000, guid: f800d1269d2619f47913b454ee59ab4f, type: 2}
 --- !u!61 &120686136281852743
 BoxCollider2D:
   m_ObjectHideFlags: 0
