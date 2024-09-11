@@ -17,6 +17,7 @@ public class GameUiController : MonoBehaviour
     [SerializeField] private GameObject screenFlashUI = null;
     [SerializeField, Space] private GameObject gameOverUI = null;
     [SerializeField] private GameObject replayButton = null;
+    [SerializeField] private GameObject quitButton = null;
     [SerializeField, Space] private GameObject startGameUI = null;
     [SerializeField] private GameObject startButton = null;
     [SerializeField] private GameObject controlsUI = null;
@@ -34,6 +35,8 @@ public class GameUiController : MonoBehaviour
         backgroundOverlay.SetActive(true);
 
         gameOverUI.SetActive(false);
+        replayButton.SetActive(false);
+        quitButton.SetActive(false);
 
         startGameUI.SetActive(true);
         controlsUI.SetActive(true);
@@ -82,11 +85,23 @@ public class GameUiController : MonoBehaviour
     {
         backgroundOverlay.SetActive(true);
 
-        EventSystem.current.SetSelectedGameObject(replayButton);
 
 
         playerColorUI.transform.SetParent(backgroundOverlay.transform);
         gameOverUI.SetActive(true);
+        StartCoroutine(ActivateGameOVerUIButtons());
+
+
+    }
+
+    private IEnumerator ActivateGameOVerUIButtons()
+    {
+        yield return new WaitForSeconds(3f);
+        replayButton.SetActive(true);
+        quitButton.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        EventSystem.current.SetSelectedGameObject(replayButton);
     }
 
     private void OnPlayerLoseLifeEvent()

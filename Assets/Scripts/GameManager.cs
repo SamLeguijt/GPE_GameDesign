@@ -150,8 +150,6 @@ public class GameManager : MonoBehaviour
         Vector2 screenBottomLeft = MainCamera.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 screenTopRight = MainCamera.ViewportToWorldPoint(new Vector2(1, 1));
 
-
-
         return new Vector2(screenTopRight.x, screenTopRight.y);
     }
     #region GameStates

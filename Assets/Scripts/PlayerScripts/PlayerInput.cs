@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -11,11 +12,34 @@ public class PlayerInput : MonoBehaviour
     public event PlayerInputHandler SwitchColorRightInput;
     public event PlayerInputHandler SwitchColorLeftInput;
 
+    public bool IsInputActive { get; private set; } = false;
+
     [SerializeField] private List<KeyCode> leftMoveKeys = new List<KeyCode>();
     [SerializeField] private List<KeyCode> rightMoveKeys = new List<KeyCode>();
     [SerializeField] private List<KeyCode> shootKeys = new List<KeyCode>();
     [SerializeField] private List<KeyCode> leftColorSwitchKeys = new List<KeyCode>();
     [SerializeField] private List<KeyCode> rightColorSwitchKeys = new List<KeyCode>();
+
+    private void Start()
+    {
+        GameManager.Instance.GameStartedEvent += OnStartGame;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.GameStartedEvent -= OnStartGame;
+    }
+
+    private void OnStartGame()
+    {
+        StartCoroutine(EnableInputRoutine());
+    }
+
+    private IEnumerator EnableInputRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+
+        IsInputActive = true;
+    }
 
     // Update is called once per frame
     void Update()

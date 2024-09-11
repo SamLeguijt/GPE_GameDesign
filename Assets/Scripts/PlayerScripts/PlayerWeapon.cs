@@ -37,6 +37,9 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnShootInputReceivedEvent()
     {
+        if (!inputController.IsInputActive)
+            return;
+
         ShootBullet();
     }
 

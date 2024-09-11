@@ -19,7 +19,7 @@ MonoBehaviour:
     MaxSpeed: 0.5
     Score: 10
   <Blue>k__BackingField:
-    Color: {r: 0, g: 0.3188672, b: 1, a: 1}
+    Color: {r: 0, g: 0.42198253, b: 1, a: 1}
     ColorType: 1
     MinSpeed: 0.4
     MaxSpeed: 0.55
@@ -31,7 +31,7 @@ MonoBehaviour:
     MaxSpeed: 0.65
     Score: 50
   <Purple>k__BackingField:
-    Color: {r: 0.54426956, g: 0, b: 1, a: 1}
+    Color: {r: 0.6200414, g: 0, b: 1, a: 1}
     ColorType: 3
     MinSpeed: 0.65
     MaxSpeed: 0.8
