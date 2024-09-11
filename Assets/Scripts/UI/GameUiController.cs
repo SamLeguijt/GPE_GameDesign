@@ -44,9 +44,6 @@ public class GameUiController : MonoBehaviour
 
     }
 
-
-    
-
     private void Start()
     {
         GameManager.Instance.GameStartedEvent += OnGameStartEvent;
@@ -59,12 +56,6 @@ public class GameUiController : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(startButton);
     }
 
-
-    private void Update()
-    {
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
-
-    }
     private void OnEnable()
     {
         playerHealth.PlayerLoseLifeEvent += OnPlayerLoseLifeEvent;

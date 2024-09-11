@@ -20,8 +20,6 @@ public class PlayerWeapon : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float projectileSpeed = 1f;
 
-    private bool isGameStarted = false;
-
     private void Start()
     {
         inputController.ShootInput += OnShootInputReceivedEvent;

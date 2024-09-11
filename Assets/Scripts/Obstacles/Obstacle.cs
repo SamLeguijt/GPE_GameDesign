@@ -82,7 +82,7 @@ public class Obstacle : MonoBehaviour
         this.fallSpeed = Random.Range(ColorData.MinSpeed, ColorData.MaxSpeed);
 
         spriteRenderer.color = this.ColorData.Color;
-        maskHitRenderer.color = this.ColorData.Color;   
+        maskHitRenderer.color = this.ColorData.Color;
 
         isActive = true;
     }
@@ -105,17 +105,25 @@ public class Obstacle : MonoBehaviour
                         return;
 
                     ObstacleProjectileCollisionEvent?.Invoke(this, projectile);
-                    spriteRenderer.sprite = null;
-
-                    hitEffectAnimator.Play(hitAnimations[randomHitEffectAnimation].name);
-                    hitMaskAnimator.Play(hitAnimationMasks[randomHitEffectAnimation].name);
-
+                    DisableObstacleOnDeath();
                     projectile.OnObstacleCollision(this);
-                    Destroy(gameObject, 1f);
-                    isActive = false;
                 }
             }
         }
+    }
+
+    private void DisableObstacleOnDeath()
+    {
+        hitEffectAnimator.Play(hitAnimations[randomHitEffectAnimation].name);
+        hitMaskAnimator.Play(hitAnimationMasks[randomHitEffectAnimation].name);
+
+        isActive = false;
+
+        obstacleCollider.enabled = false;
+        canBeDestroyed = true;
+
+        spriteRenderer.sprite = null;
+        Destroy(gameObject, 1f);
     }
 
     private void Update()
@@ -125,7 +133,7 @@ public class Obstacle : MonoBehaviour
 
         if (!canBeDestroyed)
         {
-            if (transform.position.y <  2.9f)//(screenBounds.y - spriteSizeHalfedY * 2 ))
+            if (transform.position.y < 2.9f)//(screenBounds.y - spriteSizeHalfedY * 2 ))
                 canBeDestroyed = true;
         }
 

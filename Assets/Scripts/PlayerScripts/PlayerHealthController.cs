@@ -16,7 +16,6 @@ public class PlayerHealthController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int maxLives = 3;
     [SerializeField] private int currentLives = 0;
-    [SerializeField] private float onDeathDestroyDelay = 3f;
 
     [Header("Debug tools")]
     [SerializeField] private bool takeDamage = false;

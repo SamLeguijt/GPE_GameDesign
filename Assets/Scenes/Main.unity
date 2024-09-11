@@ -5223,7 +5223,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLives: 3
   currentLives: 1
-  onDeathDestroyDelay: 3
   takeDamage: 0
 --- !u!114 &1965527306
 MonoBehaviour:
@@ -5294,7 +5293,6 @@ MonoBehaviour:
   baseSprite: {fileID: -817926505907784346, guid: 3e57fd5bb744e1f4998cf448f6e25e60, type: 3}
   slightDamagedSprite: {fileID: -3269202598301612544, guid: e89bf4cc7ff998540b9c1bc004733ab7, type: 3}
   heavyDamagedSprite: {fileID: 4149434600455196728, guid: 6a9e47c7575547347940cf14d433b6d1, type: 3}
-  projectileSprite: {fileID: 0}
 --- !u!1 &2015465388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5627,7 +5625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6834346092639249290, guid: f0e593fc442a7e34fae70a0a0db12c4c, type: 3}
       propertyPath: m_LocalPosition.z

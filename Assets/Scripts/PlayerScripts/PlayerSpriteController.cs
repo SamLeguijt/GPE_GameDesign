@@ -13,9 +13,6 @@ public class PlayerSpriteController : MonoBehaviour
     [SerializeField] private Sprite slightDamagedSprite = null;
     [SerializeField] private Sprite heavyDamagedSprite=  null;
 
-    [Header("Projectile sprites")]
-    [SerializeField] private Sprite projectileSprite = null;
-
     private List<Sprite> playerSprites = new List<Sprite>(); 
     private int playerSpriteIndex = 0;
 
