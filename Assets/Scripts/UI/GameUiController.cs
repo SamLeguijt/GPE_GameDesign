@@ -94,6 +94,13 @@ public class GameUiController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (startGameUI.activeSelf)
+            EventSystem.current.SetSelectedGameObject(startButton);
+
+    }
+
     private IEnumerator ActivateGameOVerUIButtons()
     {
         yield return new WaitForSeconds(3f);
